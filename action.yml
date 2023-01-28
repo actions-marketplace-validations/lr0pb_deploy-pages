@@ -1,0 +1,59 @@
+name: 'Deploy app to GitHub Pages'
+description: '🛠️ Build any JS/TS app and deploy it to GitHub Pages. 🚀 Any framework, ✅ No additional commits'
+author: 'lr0pb'
+
+branding:
+  icon: 'airplay'
+  color: 'gray-dark'
+
+inputs:
+  node-version:
+    description: 'Version of Node.js used to build your app'
+    required: false
+    default: lts/*
+  build-comand:
+    description: 'NPM script used to build your application'
+    required: false
+    default: 'build'
+  output-dir:
+    description: 'Build output directory that will be published to Pages'
+    required: false
+    default: 'dist'
+
+outputs:
+  url:
+    description: 'URL of hosted GitHub Pages environment'
+    value: ${{ steps.deployment.outputs.page_url }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+      shell: bash
+
+    - name: Build app
+      run: npm run ${{ inputs.build-comand }}
+      shell: bash
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v2
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        # Upload only build output folder
+        path: ${{ inputs.build-comand }}
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
