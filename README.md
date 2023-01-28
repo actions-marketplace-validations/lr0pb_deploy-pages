@@ -1,5 +1,5 @@
 # 🛠️ Deploy app to GitHub Pages
-![Latest release version](https://img.shields.io/github/v/release/lr0pb/build-pages?color=g&label=version&logo=github)
+![Latest release version](https://img.shields.io/github/v/release/lr0pb/deploy-pages?color=g&label=version&logo=github)
 
 Build your JavaScript/TypeScript apps with GitHub Actions and deploy it to GitHub Pages.
 If you are new into GitHub Actions read [this quick start guide](https://docs.github.com/en/actions/quickstart) first
