@@ -52,7 +52,7 @@ runs:
       uses: actions/upload-pages-artifact@v1
       with:
         # Upload only build output folder
-        path: ${{ inputs.build-comand }}
+        path: ${{ inputs.output-dir }}
 
     - name: Deploy to GitHub Pages
       id: deployment
