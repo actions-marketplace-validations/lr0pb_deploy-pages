@@ -18,9 +18,10 @@ If you are new into GitHub Actions read [this quick start guide](https://docs.gi
 
 Add following entry into your `jobs` list in workflow file
 ```yaml
-<job-name>:
+deploy:
   runs-on: ubuntu-latest
   permissions:
+    contents: read
     pages: write
     id-token: write
   environment:
@@ -72,6 +73,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pages: write
       id-token: write
     environment:
